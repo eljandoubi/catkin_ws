@@ -9,9 +9,10 @@ ros::ServiceClient client;
 void drive_robot(float lin_x, float ang_z)
 {
     // TODO: Request a service and pass the velocities to it to drive the robot
+    ROS_INFO_STREAM("send move request");
     ball_chaser::DriveToTarget srv;
-    srv.request.linear_x = lin_x:
-    srv.request.angular_z = ang_z
+    srv.request.linear_x = lin_x;
+    srv.request.angular_z = ang_z;
 
     if (!client.call(srv))
         ROS_ERROR("Failed to call service command_robot");
@@ -35,9 +36,9 @@ void process_image_callback(const sensor_msgs::Image img)
         
         if (red==white_pixel && green==white_pixel && blue==white_pixel){
             auto col = i % img.step;
-            if (col < img.step * 0.4) {side =  LEFT}
-            else if (col > img.step * 0.6){side = RIGHT}
-            else {side = MID}
+            if (col < img.step * 0.4) {side =  LEFT;}
+            else if (col > img.step * 0.6){side = RIGHT;}
+            else {side = MID;}
             break;
         }
     }
